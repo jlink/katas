@@ -4,6 +4,8 @@ import spock.lang.Specification
 
 class WordWrapSpec extends Specification {
 
+    public static final int ANY_WRAP = 1
+
     def wrapper
 
     void setup() {
@@ -11,13 +13,12 @@ class WordWrapSpec extends Specification {
     }
 
     def "no text"() {
-        when:
-        def text = ""
-        then:
-        wrapText(text) == []
+        expect:
+        wrapText("", ANY_WRAP) == []
     }
 
-    def wrapText(String text, int wrapAt = 1) {
+
+    private wrapText(String text, int wrapAt) {
         wrapper.wrap(text, wrapAt)
     }
 }
