@@ -14,9 +14,18 @@ class WordWrapSpec extends Specification {
 
     def "no text"() {
         expect:
-        wrapText("", ANY_WRAP) == []
+            wrapText("", ANY_WRAP) == []
     }
 
+    def "don't wrap text shorter than specified line length"() {
+        expect:
+            wrapText("hallo", 5) == ["hallo"]
+    }
+
+    def "wrap within word when there is no previous space"() {
+        expect:
+            wrapText("hallo", 3) == ["hal", "lo"]
+    }
 
     private wrapText(String text, int wrapAt) {
         wrapper.wrap(text, wrapAt)
