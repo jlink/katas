@@ -12,6 +12,10 @@ class WordWrapper {
             return []
         if (text.size() <= maxLineLength)
             return [text]
-        return [text[0..maxLineLength - 1], text[maxLineLength, -1]]
+        return splitLine(text, maxLineLength)
+    }
+
+    private List<String> splitLine(String line, int maxLineLength) {
+        [line[0..maxLineLength - 1], line[maxLineLength, -1]]
     }
 }
