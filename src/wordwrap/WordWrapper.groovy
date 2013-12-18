@@ -8,14 +8,24 @@ class WordWrapper {
     @Requires({ maxLineLength > 0 })
     @Ensures({ result instanceof List<String> })
     def wrap(text, int maxLineLength) {
-        if (text.isEmpty())
-            return []
-        if (text.size() <= maxLineLength)
-            return [text]
-        return splitLine(text, maxLineLength)
+        def lines = []
+        wrapText(text, maxLineLength, lines)
+        lines
     }
 
-    private List<String> splitLine(String line, int maxLineLength) {
-        [line[0..maxLineLength - 1], line[maxLineLength, -1]]
+    private wrapText(rest, maxLineLength, lines) {
+        if (rest.isEmpty())
+            return
+        if (rest.size() <= maxLineLength) {
+            lines << rest
+            return
+        }
+        def (newLine, newRest) = nextSplit(rest, maxLineLength)
+        lines << newLine
+        wrapText(newRest, maxLineLength, lines)
+    }
+
+    private nextSplit(String line, int maxLineLength) {
+        [line[0..maxLineLength - 1], line[maxLineLength..-1]]
     }
 }

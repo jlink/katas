@@ -27,6 +27,11 @@ class WordWrapSpec extends Specification {
             wrapText("hallo", 3) == ["hal", "lo"]
     }
 
+    def "wrap 3 times within long word without space"() {
+        expect:
+            wrapText("hallohallo", 3) == ["hal", "loh", "all", "o"]
+    }
+
     private wrapText(String text, int wrapAt) {
         wrapper.wrap(text, wrapAt)
     }
