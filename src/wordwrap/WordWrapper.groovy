@@ -26,6 +26,10 @@ class WordWrapper {
     }
 
     private nextSplit(String line, int maxLineLength) {
-        [line[0..maxLineLength - 1], line[maxLineLength..-1]]
+        def head = line[0..maxLineLength - 1]
+        def rest = line[maxLineLength..-1]
+        if (rest[0] == " ")
+            rest -= " "
+        [head, rest]
     }
 }

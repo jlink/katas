@@ -32,6 +32,17 @@ class WordWrapSpec extends Specification {
             wrapText("hallohallo", 3) == ["hal", "loh", "all", "o"]
     }
 
+    def "wrap line at space exactly at position"() {
+        expect:
+            wrapText("abc a", 3) == ["abc", "a"]
+            wrapText("abc abc abc", 3) == ["abc", "abc", "abc"]
+    }
+
+    def "wrap line at space before max line length"() {
+        expect:
+            wrapText("ab ab", 3) == ["ab", "ab"]
+    }
+
     private wrapText(String text, int wrapAt) {
         wrapper.wrap(text, wrapAt)
     }
