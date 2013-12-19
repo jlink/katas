@@ -40,7 +40,25 @@ class WordWrapSpec extends Specification {
 
     def "wrap line at space before max line length"() {
         expect:
-            wrapText("ab ab", 3) == ["ab", "ab"]
+            wrapText("abc ab", 3) == ["abc", "ab"]
+            wrapText("abc ab", 4) == ["abc", "ab"]
+            wrapText("a b a b", 3) == ["a b", "a b"]
+    }
+
+    def "multi line wrap complex example"() {
+        expect:
+            wrapText("0123456789hello this is a text which " +
+                    "will be broken into quite a few lines.", 10) ==
+                    [
+                            "0123456789",
+                            "hello this",
+                            "is a text",
+                            "which will",
+                            "be broken",
+                            "into quite",
+                            "a few",
+                            "lines."
+                    ]
     }
 
     private wrapText(String text, int wrapAt) {
