@@ -45,7 +45,7 @@ class WordWrapSpec extends Specification {
             wrapText("a b a b", 3) == ["a b", "a b"]
     }
 
-    def "multi line wrap complex example"() {
+    def "wrap multiple lines in complex example"() {
         expect:
             wrapText("0123456789hello this is a text which " +
                     "will be broken into quite a few lines.", 10) ==
