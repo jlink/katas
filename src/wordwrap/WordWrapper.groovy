@@ -1,16 +1,22 @@
 package wordwrap
 
-import org.gcontracts.annotations.Ensures
+import groovy.transform.CompileStatic
 import org.gcontracts.annotations.Requires
 
 class WordWrapper {
 
-
     public static final String SPLIT_CHAR = ' '
+    public static final String NEWLINE = '\n'
 
-    @Requires({ maxLineLength > 0 })
-    @Ensures({ result instanceof List<String> })
-    def wrap(String text, int maxLineLength) {
+    @CompileStatic
+    @Requires({ maxLineLength > 0 && text != null })
+    String wrapToString(String text, int maxLineLength) {
+        wrap(text, maxLineLength).join(NEWLINE)
+    }
+
+    @CompileStatic
+    @Requires({ maxLineLength > 0 && text != null })
+    List<String> wrap(String text, int maxLineLength) {
         def lines = []
         wrapText(text, maxLineLength, lines)
         lines

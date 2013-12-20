@@ -61,6 +61,15 @@ class WordWrapSpec extends Specification {
                     ]
     }
 
+    def "outputting a single string also works"() {
+        given:
+            def text = "This is a short text."
+        when:
+            def resultingString = wrapper.wrapToString(text, 7)
+        then:
+            resultingString == "This is\na short\ntext."
+    }
+
     private wrapText(String text, int wrapAt) {
         wrapper.wrap(text, wrapAt)
     }
