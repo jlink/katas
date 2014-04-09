@@ -1,0 +1,10 @@
+1. Divide a string into a list of string values separated by commas in the original string.
+   Empty values are possible. => Empty string results in one empty value.
+   Leading and trailing whitespace is not part of a value.
+
+2. Complete values can be put within double quotes ("), the double quote characters are not part of the token.
+   Within double quotes a comma does not mark the beginning of a new token.
+
+3. Unmatched double quotes and double quotes within a value result in an exception being thrown.
+
+4. A double quote can be escaped by a leading backslash (\)
